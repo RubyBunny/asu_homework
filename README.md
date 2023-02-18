@@ -5,9 +5,12 @@
 ---
 
 ### **Расположение лабораторных работ в папках**
-* "**TMP**" - Теория и методы программирования *(Салита, Лепендин)*
-* "**Computer hardware**" - Аппаратные средства вычислительной техники *(Рудер)*
-* "**Information theory**" - Теория информации *(Райкин)*
+* "**[TMP][TMP]**" - Теория и методы программирования *(Салита, Лепендин)*
+* "**[Computer hardware][CH]**" - Аппаратные средства вычислительной техники *(Рудер)*
+* "**[Information theory][IT]**" - Теория информации *(Райкин)*
 
 ---
 
+[TMP]: https://portal.edu.asu.ru/course/view.php?id=10518 
+[CH]:  https://portal.edu.asu.ru/course/view.php?id=2677 
+[IT]: https://portal.edu.asu.ru/course/view.php?id=856 
