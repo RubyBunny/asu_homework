@@ -13,4 +13,4 @@
 
 [TMP]: https://github.com/RubyBunny/asu_homework/tree/main/TMP 
 [CH]:  https://github.com/RubyBunny/asu_homework/tree/main/Computer%20hardware
-[IT]: https://github.com/RubyBunny/asu_homework/tree/main/TMP
+[IT]: https://github.com/RubyBunny/asu_homework/tree/main/Information%20theory
