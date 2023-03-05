@@ -10,3 +10,7 @@ class FileReader:
             text = file.read()
 
         return text.lower()
+
+    def create_file_copy(self, copy_name: str="copy.txt"):
+        with open(copy_name, 'w', encoding="utf-8") as copy:
+            copy.write(self.get_text_from_file())
