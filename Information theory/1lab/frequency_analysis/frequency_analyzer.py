@@ -9,7 +9,7 @@ class FrequencyAnalyzer:
         letter_counter = cls.__get_letter_count(text)
         letter_counter.sort(reverse=True, key=lambda letter_tuple: letter_tuple[1])
 
-        return letter_counter
+        return list(map(lambda tup: tup[0], letter_counter))
 
 
     @classmethod
