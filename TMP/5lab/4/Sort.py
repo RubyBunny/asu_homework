@@ -18,7 +18,7 @@
 # from Sort import oddEvenSort
 #
 # В случае если модуль (файл) лежит в более высокой директории
-# from ..Sort import oddEvenSort    .. — означают "на одну директорию вверх"
+# from ...Sort import oddEvenSort    .. — означают "на одну директорию вверх"
 
 
 def oddEvenSort(array: list) -> list:
