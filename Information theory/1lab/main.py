@@ -13,7 +13,9 @@ def main():
     cipher_text = Cryptographer.encode_text(text_2, KEY)
 
     cipherAnalysis = FrequencyAnalyzer.frequency_analyze(cipher_text)
-    print(Cryptographer.decode_text(cipher_text[100:400], cipherAnalysis, publicAnalysis))
+
+    print(text_2[86:400])
+    print(Cryptographer.decode_text(cipher_text[86:400], cipherAnalysis, publicAnalysis))
 
 
 if __name__ == "__main__":
