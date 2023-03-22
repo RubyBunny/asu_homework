@@ -1,4 +1,4 @@
-class Cipher:
+class Cryptographer:
 
     __PUBLIC_KEY = list("оеаинтсрвлкмдпуяыьгзбчйхжшюцщэфъё")
     __ALPHABET = list("абвгдеёжзийклмнопрстуфхцчшщъыьэюя")
