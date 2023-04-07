@@ -15,8 +15,8 @@ class Cryptographer:
     @classmethod
     def decode_text(cls, 
                     text: str,
-                    list_of_occurrences: list[str]=__ALPHABET,
-                    list_of_substitutions: list[str]=__PUBLIC_KEY
+                    list_of_occurrences: list[str],
+                    list_of_substitutions: list[str]
                     ) -> str:
         key = cls.__generate_key(list_of_occurrences, list_of_substitutions)
         return cls.__replace_letter(list(text), key)
@@ -36,7 +36,7 @@ class Cryptographer:
 
 
     @staticmethod
-    def __replace_letter(text: list[str], key: dict[str, str]):
+    def __replace_letter(text: list[str], key: dict[str, str]) -> str:
         for index, letter in enumerate(text):
             if letter not in key:
                 continue
