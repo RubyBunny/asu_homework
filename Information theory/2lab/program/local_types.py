@@ -1,0 +1,1 @@
+LetterCount = tuple[str, int]
