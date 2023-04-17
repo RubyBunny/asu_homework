@@ -1,6 +1,6 @@
-from program.frequency_formatter import frequency_analysis_formatter
-from program.frequency_analyzer import FrequencyAnalyzer
-from program.file_reader import FileReader
+from libs.frequency_formatter import frequency_analysis_formatter
+from libs.frequency_analyzer import FrequencyAnalyzer
+from libs.file_reader import FileReader
 
 
 FILENAME = "./text1.txt"
