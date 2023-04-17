@@ -6,7 +6,7 @@ from .local_types import LetterCount
 class FrequencyAnalyzer:
 
     @classmethod
-    def frequency_analyze(cls, text: str, OnlyLetters=False) -> list[str] | list[LetterCount]:
+    def frequency_analyze(cls, text: str, *, OnlyLetters=False) -> list[str] | list[LetterCount]:
         letter_counter = cls.__get_letter_count(text)
         letter_counter.sort(reverse=True, key=lambda letter_tuple: letter_tuple[1])
 
