@@ -1,7 +1,7 @@
 from collections import Counter
 
-from .local_types import LetterCount
 
+LetterCount = tuple[str, int]
 
 class FrequencyAnalyzer:
 
