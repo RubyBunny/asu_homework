@@ -30,7 +30,7 @@ class ListWrapper:
         raise Exception("Can't set item")
 
     def insert(self, item):
-        self.array.append(item)
+        self.array.append((uuid1().int, item))
 
     def find(self, item_id: int) -> int:
         low = 0
