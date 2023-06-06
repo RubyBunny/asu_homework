@@ -23,9 +23,6 @@ class ListWrapper:
     def __iter__(self):
         return iter(self.array)
 
-    def __delitem__(self, index: int):
-        del self.array[index]
-
     def __setitem__(self, index, new_value):
         raise Exception("Can't set item")
 
@@ -68,4 +65,21 @@ class ListWrapper:
             else:
                 low = mid + 1
 
+        return False
+
+    def __delitem__(self, index: int):
+        st = 0
+        fin = len(self.array) - 1
+        IDD = self.array[index][0]
+        while st <= fin:
+            mid = (st + fin) // 2
+            mid_val = self.array[mid][0]
+
+            if mid_val == IDD:
+                del self.array[index]
+            if mid_val > IDD:
+                fin = mid - 1
+            else:
+                st = mid + 1
+                
         return False
