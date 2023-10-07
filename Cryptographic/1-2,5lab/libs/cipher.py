@@ -13,8 +13,7 @@ class Cipher:
         unicodes = list(map(ord, list(message)))
 
         for index in range(len(unicodes)):
-            unicodes[index] = (unicodes[index] + shift *
-                               mode.value) % 26 + 78
+            unicodes[index] = (unicodes[index] + shift * mode.value) % 26 + 78
             unicodes[index] += 26 if unicodes[index] < 97 else 0
 
         return "".join(map(chr, unicodes))

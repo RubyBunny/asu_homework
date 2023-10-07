@@ -1,56 +1,53 @@
-from argparse import ArgumentParser, BooleanOptionalAction
+import click
+
 from libs.cipher import Cipher, Mode
 from libs.file_reader import FileReader
 
 
-argparse = ArgumentParser()
-
-cipher_algoritm_group = argparse.add_mutually_exclusive_group()
-cipher_algoritm_group.add_argument(
-    "-c", "--cesaer", type=bool, action=BooleanOptionalAction)
-cipher_algoritm_group.add_argument(
-    "-v", "--vigener", type=bool, action=BooleanOptionalAction)
-cipher_algoritm_group.add_argument(
-    "-g", "--gamming", type=bool, action=BooleanOptionalAction)
-
-cipher_mode_group = argparse.add_mutually_exclusive_group()
-cipher_mode_group.add_argument(
-    "-e", "--encode", type=bool, action=BooleanOptionalAction)
-cipher_mode_group.add_argument(
-    "-d", "--decode", type=bool, action=BooleanOptionalAction)
-
-argparse.add_argument("file", type=str)
-argparse.add_argument("-k", "--key", type=str, default="пароль")
-
-args = argparse.parse_args()
+CONTEXT_DEFAULT = dict(
+    default_map={"input": "./input.txt", "output": "./output.txt"})
 
 
-def main():
-    original_text = FileReader.get_text_from_file(args.file)
+@click.group(context_settings=CONTEXT_DEFAULT)
+@click.option("-i", "--input", default="./input.txt", type=str)
+@click.option("-o", "--output", default="./output.txt", type=str)
+@click.pass_context
+def main(ctx, input: str, output: str):
+    ctx.ensure_object(dict)
 
-    if args.cesaer:
-        if args.encode:
-            caesar_text = Cipher.caesar(
-                original_text, int(args.key), mode=Mode.encode)
-            FileReader.write_text_in_file("ouput.txt", caesar_text)
-        elif args.decode:
-            caesar_text = Cipher.caesar(
-                original_text, int(args.key), mode=Mode.decode)
-            FileReader.write_text_in_file("ouput.txt", caesar_text)
+    ctx.obj["input"] = input
+    ctx.obj["output"] = output
 
-    if args.vigener:
-        if args.encode:
-            vigener_text = Cipher.vigener(
-                original_text, args.key, mode=Mode.encode)
-            FileReader.write_text_in_file("ouput.txt", vigener_text)
-        elif args.decode:
-            vigener_text = Cipher.vigener(
-                original_text, args.key, mode=Mode.decode)
-            FileReader.write_text_in_file("ouput.txt", vigener_text)
 
-    if args.gamming:
-        gamming_text = Cipher.gamming(original_text, args.key)
-        FileReader.write_text_in_file("ouput.txt", gamming_text)
+@main.command()
+@click.option("-k", "--key", required=True, type=int)
+@click.option("-e", "--encode", "cipher_mode", flag_value=Mode.encode, type=Mode)
+@click.option("-d", "--decode", "cipher_mode", flag_value=Mode.decode, type=Mode)
+@click.pass_context
+def caesar(ctx: click.Context, key: int, cipher_mode: Mode) -> None:
+    original_text = FileReader.get_text_from_file(ctx.obj["input"])
+    cipher_text = Cipher.caesar(original_text, key, mode=cipher_mode)
+    FileReader.write_text_in_file(ctx.obj["output"], cipher_text)
+
+
+@main.command()
+@click.option("-k", "--key", required=True, type=str)
+@click.option("-e", "--encode", "cipher_mode", flag_value=Mode.encode)
+@click.option("-d", "--decode", "cipher_mode", flag_value=Mode.decode)
+@click.pass_context
+def vigener(ctx: click.Context, key: str, cipher_mode: Mode) -> None:
+    original_text = FileReader.get_text_from_file(ctx.obj["input"])
+    cipher_text = Cipher.vigener(original_text, key, mode=cipher_mode)
+    FileReader.write_text_in_file(ctx.obj["output"], cipher_text)
+
+
+@main.command()
+@click.option("-k", "--key", required=True, type=str)
+@click.pass_context
+def gamming(ctx: click.Context, key: str) -> None:
+    original_text = FileReader.get_text_from_file(ctx.obj["input"])
+    cipher_text = Cipher.gamming(original_text, key)
+    FileReader.write_text_in_file(ctx.obj["output"], cipher_text)
 
 
 if __name__ == "__main__":
