@@ -22,13 +22,14 @@ class CipherMode(ABC):
         expanded_binary_string = self.expand_binary_string(text)
 
         return [
-            expanded_binary_string[i*64:(i+1)*64]
+            expanded_binary_string[i * 64 : (i + 1) * 64]
             for i in range(len(expanded_binary_string) // 64)
         ]
 
     def expand_binary_string(self, binary_string: str) -> str:
-        additional_symbols_count = (
-            ceil(len(binary_string) / 64) * 64) - len(binary_string)
+        additional_symbols_count = (ceil(len(binary_string) / 64) * 64) - len(
+            binary_string
+        )
 
         return "".join([binary_string, "0" * additional_symbols_count])
 
@@ -38,9 +39,7 @@ class CipherMode(ABC):
                 self.block_to_int(first) ^ self.block_to_int(second)
             )
         elif isinstance(second, int):
-            return self.int_to_block(
-                self.block_to_int(first) ^ second
-            )
+            return self.int_to_block(self.block_to_int(first) ^ second)
 
     def block_to_int(self, subblock: str) -> int:
         return int(subblock, 2)
