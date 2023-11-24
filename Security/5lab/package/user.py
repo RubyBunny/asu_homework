@@ -14,7 +14,7 @@ class User:
         self.chmod(permissions)
 
     def chmod(self, permissions: int) -> None:
-        if permissions <= 0 and permissions >= 3:
+        if permissions < 0 or permissions > 3:
             raise Exception("Wrong permissions")
 
         self.__permissions = permissions
