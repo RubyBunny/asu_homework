@@ -11,9 +11,9 @@ class User:
     def __init__(self, smm: SMM, hashed_password: str, permissions: int = 1) -> None:
         self.__hashed_password = hashed_password
         self.__smm = smm
-        self.chmod(permissions)
+        self.__chmod(permissions)
 
-    def chmod(self, permissions: int) -> None:
+    def __chmod(self, permissions: int) -> None:
         if permissions < 0 or permissions > 3:
             raise Exception("Wrong permissions")
 
@@ -25,7 +25,7 @@ class User:
                 password.encode(), self.__hashed_password.encode()
             )
             return True
-        except:
+        except Exception:
             return False
 
     def read_memory(self) -> list[int]:

@@ -3,5 +3,5 @@ def read_shadow_file() -> list[list[str]]:
         data = file.readlines()
 
     return list(
-        filter(lambda x: x[1][:3] == "$y$", (map(lambda x: x.split(":")[:2], data)))
+        filter(lambda x: x[1][:3] == "$y$", map(lambda x: x.split(":")[:2], data))
     )
