@@ -16,3 +16,7 @@ def euler_function(p: int, q: int) -> int:
 
 def convert_bytes2string(byte_list: list[int]) -> str:
     return "".join(list(map(chr, byte_list)))
+
+
+if __name__ == "__main__":
+    print(extended_euclidean_algorithm(240, 46))

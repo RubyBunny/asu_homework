@@ -5,12 +5,12 @@ from package.util import convert_bytes2string
 
 
 def main() -> None:
-    rsa = RSA(23, 71)
+    rsa = RSA(19, 41, 691)  # 41 59, 23 71
     msg = FileReader.get_text_from_file("./input.txt")
     hash_msg = md5(msg.encode())
 
-    print(f"Закрытый ключ: {rsa.e, rsa.n}")
-    print(f"Открытый ключ: {rsa.d, rsa.n}")
+    print(f"Открытый ключ: {rsa.e, rsa.n}")
+    print(f"Закрытый ключ: {rsa.d, rsa.n}")
     print(f"Хеш открытого текста: {hash_msg}")
 
     signature = rsa.encrypt(hash_msg)

@@ -11,7 +11,7 @@ class RSA:
         self.n = p * q
         self.e = e
         self.f = euler_function(p, q)
-        self.d = extended_euclidean_algorithm(self.f, self.e)[1]
+        self.d = self.__calc_d(extended_euclidean_algorithm(self.f, self.e)[1])
 
     def encrypt(self, msg: str):
         byte_list = map(ord, msg)
@@ -22,3 +22,9 @@ class RSA:
         byte_list = map(ord, msg)
 
         return list(map(lambda x: pow(x, self.e, self.n), byte_list))
+
+    def __calc_d(self, a: int) -> int:
+        if a < 0:
+            return self.f - abs(a)
+
+        return a
